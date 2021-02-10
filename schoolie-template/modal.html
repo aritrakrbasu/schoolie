@@ -1,0 +1,100 @@
+<!doctype html><html lang="en"><head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+			<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" ></script>
+			<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               minimum-scale=1.0">
+			</head>
+			<body style="background:#fff">
+				<div class="container-fluid">
+				<div class="row">
+				<button class="theme-bg text-white btn m-4 float-right">Add Lesson</button>
+				</div>
+					<div class="row">
+						<div class="col-lg-9  p-4">
+							<h1 class="big-header">Add lesson</h1>
+							<form class="add-lesson">
+							 <label class="m-0" for="section"> Title</label>
+								 <input 
+								  type="text" 
+								  class="form-control" 
+								  id="section" 
+								  placeholder="Section"
+								  name="section"
+								  value={this.state.section} 
+								  onChange={this.handleChange}  
+								  />
+							<label class="m-0" for="section"> Description</label>
+								 <textarea 
+								  type="text" 
+								  class="form-control" 
+								  id="section" 
+								  placeholder="Section"
+								  name="section"
+								  value={this.state.section} 
+								  onChange={this.handleChange}  
+								  rows="5"></textarea>
+								 <button class="theme-btn border-black bg-transparent text-dark btn my-4">Add Files</button>
+							</form>
+							<div class="container-fluid p-0 m-0">
+								<ul class="selected-files">
+									<li><div class="row">
+										<div class="col-2">
+											<img src="img/1.png" class="img-fluid">
+										</div>
+										<div class="col-10">
+											<h1 class="selected-file-name"> 1.png </h1>
+											<h3> Image </h3>
+										</div>
+									</div></li>
+									<li><div class="row">
+										<div class="col-2">
+											<img src="img/1.png" class="img-fluid">
+										</div>
+										<div class="col-10">
+											<h1 class="selected-file-name"> 1.png </h1>
+											<h3> Image </h3>
+										</div>
+									</div></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-3">
+						<div class="container-fluid p-4">
+						<h1 class="big-header">Settings</h1>
+							<form class="add-lesson">
+							 <label class="m-0" for="section"> Points</label>
+								 <input 
+								  type="text" 
+								  class="form-control" 
+								  id="section" 
+								  placeholder="Section"
+								  name="section"
+								  value={this.state.section} 
+								  onChange={this.handleChange}  
+								  />
+							<label class="m-0" for="section"> Due Date</label>
+								 <input 
+								  type="date" 
+								  class="form-control" 
+								  id="section" 
+								  placeholder="Section"
+								  name="section"
+								  value={this.state.section} 
+								  onChange={this.handleChange}  
+								  />
+							</form>
+						</div>
+					</div>
+					
+				</div>
+			</body>
+</html>

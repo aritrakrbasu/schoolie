@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+body
+{
+	background:#F5F7FB;
+	font-family: 'Varela Round', sans-serif;
+}
+a
+{
+	text-decoration:none !important;
+	color:#212529;
+}
+a:hover
+{
+	text-decoration:none !important;
+	color:#212529;
+}
+sidebar
+{
+  position:fixed;
+  width: 100px;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background:#fff;
+}
+sidebar ul
+{
+	list-style:none;
+	padding:0px;
+	
+}
+sidebar ul li 
+{
+	width:100%;
+	text-align:center;
+	margin:20px 0px;
+	font-size:25px;
+}
+sidebar ul li i
+{
+	background:#F5F7FB;
+	color:#333;
+	padding:10px;
+	height:50px;
+	width:50px;
+	border-radius:50%;
+}
+sidebar ul li .initial
+{
+	background:#F5F7FB;
+	color:#333;
+	height:50px;
+	width:50px;
+	line-height:50px;
+	border-radius:50%;
+	margin:0px auto;
+	background:#1f4d84
+}
+main-container
+{
+	margin-left:100px !important;
+	display:block;
+}
+.theme-bg
+{
+	background:#1f4d84;
+}
+.theme-text
+{
+	color:#1f4d84;
+}
+.big-header
+{
+	font-weight:bold;
+	font-size:40px;
+}
+.border-round
+{
+	border-radius:20px;
+}
+.small-header
+{
+	font-weight:bold;
+	text-align:left;
+	font-size:20px;
+}
+.box-shadow
+{
+	box-shadow:0px 0px 20px #ddd;
+}
+.course-heading-small
+{
+	font-weight:bold;
+	font-size:24px;
+}
+.course-heading-very-small
+{
+	font-weight:bold;
+	font-size:16px;
+}
+.theme-btn
+{
+	border-radius:20px;
+}
+.class-img
+{
+	width:100%;
+	height:230px;
+	float:right;
+}
+.class-stats >ul
+{
+	list-style:none;
+	padding:0px;
+}
+.class-stats ul li
+{
+	display:inline-block;
+	font-size:16px !important;
+	color:#ddd;
+	padding:10px 10px;
+	font-weight:bold;
+}
+.container-teacher > h1
+{
+	font-size:14px;
+	font-weight:bold;
+	display:inline-block;
+}
+.container-teacher >span
+{
+	font-weight:bold;
+	color:#333;
+	padding-right:5px;
+	font-size:10px;
+}
+
+.back-arrow
+{
+	background:#F5F7FB;
+	height:50px;
+	width:50px;
+	padding-top:10px;
+	border-radius:100px;
+	text-align:center;
+	display:inline-block;
+	margin-right:10px;
+}
+.class-intro >h1.big-header
+{
+	display:inline-block
+}
+
+.container-teacher-large > h1
+{
+	font-size:24px;
+	font-weight:bold;
+	display:inline-block;
+}
+.container-teacher-large>span
+{
+	font-weight:bold;
+	color:#333;
+	padding-right:5px;
+	font-size:20px;
+}
+.prog
+{
+	background:#ddd;
+	height:10px;
+	width:100%;
+	border-radius:20px;
+	padding:0px;
+}
+.done
+{
+	border-radius:20px;
+	padding:5px;
+}
+.border-black
+{
+	border:2px solid #000;
+}
+.add-lesson >span
+{
+	display:block;
+	height:100%;
+	color:#ddd;
+	font-size:20px;
+}
+.add-lesson > h2
+{
+	color:#fff;
+	font-size:16px;
+	font-weight:bold;
+	letter-spacing:2px;
+}
+.header-div
+{
+	display:block;
+	clear:both:
+}
+.add-lesson  input
+{
+	background:#F5F7FB;
+	
+}
+.add-lesson  textarea
+{
+	background:#F5F7FB;
+}
+.add-lesson input[type=submit]
+{
+	background:transparent;
+}
+.add-lesson > label
+{
+	font-size:20px;
+	padding:20px 0px;
+}
+.lesson-menu 
+{
+	list-style:none;
+	padding:0px;
+	width:100%;
+	margin-top:10px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  border-radius:20px;
+}
+.lesson-menu .btn
+{
+	width:100%;
+	background:transparent;
+	text-align:left;
+	border-bottom:1px solid #ddd;
+	padding:10px ;
+	
+}
+.selected-files
+{
+	list-style:none;
+	padding:0px;
+	width:100%;
+}
+.selected-files li
+{
+	padding:5px;
+	border:1px solid #ddd;
+	margin:20px 0px;
+}
+.selected-files li img
+{
+	height:80px;
+}
+.selected-file-name
+{
+	font-weight:bold;
+	font-size:20px;
+}
+iframe {
+  height: 200px;
+  overflow:hidden !important
+}
+#sizer
+{
+	display:none;
+}
+.lesson-module
+{
+		  background: radial-gradient(circle at  left,#e2e2e2 18%, #fff 19%);
+		  word-wrap: break-word;
+		 
+}
+
+.lesson-module-icon
+{
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+}
+.loading-big
+{
+	width:100%;
+	min-height:15px;
+	background:#ddd;
+	margin:10px 0px;
+		animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1000px 104px;
+    position: relative;
+    overflow: hidden;
+}
+.loading-image
+{
+	height:100px;
+	background:#F5F7FB;
+	margin:10px 0px;
+	animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1000px 104px;
+    position: relative;
+    overflow: hidden;
+}
+.loading-small
+{
+	width:80%;
+	height:10px;
+	background:red;
+	margin:10px 0px;
+	animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1000px 104px;
+    position: relative;
+    overflow: hidden;
+}
+.participant-list
+{
+	width:95%;
+	margin:30px;
+}
+.participant-list td
+{
+	font-weight:bold;
+	font-size:20px
+}
+.participant-list .participants-tag
+{
+	float:left;
+	background:#1f4d84;
+	width:auto;
+   clear: left;
+   font-size:16px;
+   font-weight:normal;
+   letter-spacing:1px;
+   padding:5px 20px;
+   color:#fff;
+   border-radius:30px;
+}
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+@media all and (max-width: 480px) {
+	sidebar
+	{
+
+		width:100%;
+		height:80px;
+		transform:translate(0px, calc(100vh - 80px));
+		border-top-left-radius:40px;
+		border-top-right-radius:40px;
+		box-shadow:0px 0px 50px #868686,0px 0px 5px #000;
+		padding:0px;
+		background:#171717;
+	}
+	main-container
+	{
+		margin-left:0px !important;
+	}
+	sidebar ul
+	{
+		display:flex;
+		padding:0px;		
+	}
+	sidebar li 
+	{
+		display:inline;
+		margin:10px 0px;
+	}
+	sidebar ul li i
+	{
+		background:transparent;
+		color:#6d6d6da3;
+		
+	}
+	sidebar li:nth-child(1) 
+	{
+		order:1;
+	}
+	sidebar li div
+	{
+		display:inline;
+		padding:10px;
+	}
+	body
+	{
+		margin-bottom:100px;
+	}
+	.lesson-module-icon > img 
+	{
+		padding:0px;
+		max-width:40px !important;
+		max-height:30px !important;
+		margin-left:-15px;
+	}

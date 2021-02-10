@@ -1,0 +1,7 @@
+IP addresses of Semrush Bot ( Site Audit ): 46.229.173.66, 46.229.173.67, 46.229.173.68
+
+REQUEST:
+curl -i -sS -L --proto-redir -all,http,https --max-time 5 -A 'Mozilla/5.0 (compatible; SemrushBot-SA/0.97; +http://www.semrush.com/bot.html)' http://variate.biz/
+
+RESPONSE:
+curl: (28) Operation timed out after 5001 milliseconds with 0 bytes received
