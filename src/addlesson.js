@@ -33,8 +33,8 @@ class  AddLesson extends Component {
     const doc_id=this.props.docid;
     const uploadFile=this.state.files;
     if(uploadFile)
-    {//.map
-    uploadFile.forEach(files =>
+    {
+      uploadFile.forEach(files =>
       {
         const uploadTask=storage.ref().child(localStorage.getItem('user')+'/'+files.name).put(files);
         uploadTask.on('state_changed',
@@ -56,9 +56,7 @@ class  AddLesson extends Component {
               {
                 urls.push(...this.state.urls)
               }
-              console.log(this.state.urls)
-              console.log(urls)
-                 
+
               const file={
                 name:files.name,
                 url:url,
@@ -71,6 +69,7 @@ class  AddLesson extends Component {
                       console.log("files="+this.state.files.length,"urls="+this.state.urls.length)
                       if(this.state.files.length === this.state.urls.length)
                       {
+                          console.log(doc_id)
                           this.AddLesson_firestore(doc_id)
                       }
               })
@@ -80,6 +79,7 @@ class  AddLesson extends Component {
       })
     }else
     {
+      console.log(doc_id)
       this.AddLesson_firestore(doc_id)
     }
    
@@ -174,17 +174,16 @@ class  AddLesson extends Component {
             size="xl"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            ref={this.otpModalRef}
             dialogClassName="modal-full"
           >
 
             <Modal.Body>
               <div>
-            <div className="container-fluid">
-            <div className="row modal-head">
-            <button className="btn fa-large" onClick={this.hideModal}> <FontAwesomeIcon icon ={faTimes} size='2x'/></button>
-            <button className="theme-bg text-white btn m-4 float-right" onClick={this.AddLesson} disabled ={!this.state.title}>Add Lesson</button>
-            </div>
+                <div className="container-fluid">
+                <div className="row modal-head">
+                  <button className="btn fa-large" onClick={this.hideModal}> <FontAwesomeIcon icon ={faTimes} size='2x'/></button>
+                  <button className="theme-bg text-white btn m-4 float-right" onClick={this.AddLesson} disabled ={!this.state.title}>Add Lesson</button>
+                </div>
 					<div className="row">
 						<div className="col-lg-9  p-4">
 							<h1 className="big-header">Add lesson</h1>

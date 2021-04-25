@@ -3,6 +3,7 @@ import {fire,provider} from './firebase_config';
 import './App.css';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { Link } from 'react-router-dom';
 class Login extends Component {
 
   constructor(props){
@@ -13,7 +14,9 @@ class Login extends Component {
 
     this.state={
         email:'',
-        password:''
+        password:'',
+        loading:false,
+        loginError:''
     }
   }
   googleLogin(e)
@@ -39,23 +42,18 @@ class Login extends Component {
 }
 
   login(e){
-      
       e.preventDefault();
-       
+      this.setState({loginError:''});
+      this.setState({loading:true});     
       fire.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(()=> {
-       
-        // Existing and future Auth states are now persisted in the current
-        // session only. Closing the window would clear any existing state even
-        // if a user forgets to sign out.
-        // ...
-        // New sign-in will be persisted with session persistence.
-         fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
+            fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
             window.location.href="./dashboard"
-           
+            this.setState({loading:false});
         }).catch((error)=>
         {
-          alert(error.message);
+          this.setState({loginError:error.message});
+          this.setState({loading:false});
         });
 
         return;
@@ -83,14 +81,14 @@ class Login extends Component {
                     <div className="img-holder w-25 m-auto">
                     <img src="logo.png" className="img-fluid" alt="logo"/>
                     </div>
-                    <h1> Shorten </h1>
-                    <h3 className="text-white">  Your custom url shortner </h3>
+                    <h1> Schoolie </h1>
+                    <h3 className="text-white">  Your virtual School </h3>
                 </div>
             </div>
             <div className="col-lg-6">
                 <div className="div-middle">
                 <h1 className="website_head"> Login </h1>
-                    <form className="login-form text-left mx-auto my-4">
+                    <form className="login-form text-left mx-auto my-4" onSubmit={this.login}>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Email address</label>
                              <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} onChange={this.handleChange} ></input>
@@ -102,13 +100,13 @@ class Login extends Component {
                             ></input>
 </div>                  
                         <div className="form-group text-center">
-                            <button type="submit" onClick={this.login} className="btn theme-bg text-light w-25 p-2 mx-4" id="loginbtn">Login</button>
+                            <button disabled={this.state.loading} type="submit" className="btn theme-bg text-light w-25 p-2 mx-4" id="loginbtn">Login</button>
                         </div>
                         
-                        <p>Don't have an account <a href="/register"> register</a></p>
+                        <p>Don't have an account <Link to="/register" className="text-primary"> register</Link></p>
                     </form>
                     <button onClick={this.googleLogin}>Google Login</button>
-                    
+                    {this.state.loginError && (<div className="alert alert-danger">{this.state.loginError}</div>)}
                 </div>
             </div>
         </div> 

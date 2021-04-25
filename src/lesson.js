@@ -19,7 +19,8 @@ class LessonPage extends Component {
       this.submitAssingment=this.submitAssingment.bind(this);
       this.unsubmitAssingment=this.unsubmitAssingment.bind(this);
       this.state={
-          lesson_details:null
+          lesson_details:null,
+          urls:[]
       }
      
     }
@@ -65,16 +66,16 @@ class LessonPage extends Component {
         db.collection("classes").doc(this.state.classId).collection('lessons').doc(this.state.lessonId).delete();
     }
     handleChangeFiles(e)
-  {
-      var files=[]
-    if(this.state.files)
     {
-       files.push=[...this.state.files]
+        var files=[]
+        if(this.state.files)
+        {
+            files=[...this.state.files]
+        }
+            files.push(e.target.files[0])
+            this.setState({files:files});
+        
     }
-      files.push(e.target.files[0])
-      this.setState({files:files});
-    
-  }
 
     selectFile(e)
     {
@@ -94,7 +95,7 @@ class LessonPage extends Component {
         const uploadFile=this.state.files;
             if(uploadFile)
             {
-            uploadFile.forEach((files,index)=>{
+                uploadFile.forEach((files,index)=>{
                 index = index + 1;
                 const uploadTask=storage.ref().child(localStorage.getItem('user')+'/'+files.name).put(files);
                 uploadTask.on('state_changed',
@@ -108,24 +109,22 @@ class LessonPage extends Component {
                 console.log(error);
                 },
                 ()=>{
-                //complete
-                //console.log('complete')
                 storage.ref().child(localStorage.getItem('user')+'/'+files.name).getDownloadURL().then(url =>
                     {
                         var urls=[]
-                    if(this.state.urls)
-                    {
-                        urls.push=[...this.state.urls]
-                    }
-                    urls.push(url)
-                    //console.log(urls)
+                        if(this.state.urls)
+                        {
+                            urls=[...this.state.urls]
+                        }
+                        urls.push(url)
+                    console.log(urls)
                     this.setState({urls:urls},()=>{
                         if(this.state.files.length === this.state.urls.length)
                         {
                             var docRef = db.collection("classes").doc(this.state.classId).collection("lessons").doc(this.state.lessonId).collection('essentials').doc('answers');
                             const user =localStorage.getItem('user')
                             docRef
-                            .update({
+                            .set({
                                     [user] : this.state.urls
                                 }).then(this.setState({urls:null,files:null})).then( this.setState({turnin:null}))
                         
@@ -170,13 +169,12 @@ class LessonPage extends Component {
 							<div class="col-lg-8">
 								<h1 class="big-header">{this.state.lesson_details.l_title}</h1>
 								<div class="container-teacher-large theme-text">
-											<span>By</span><h1> Kushal Dey </h1>
+											<span>By</span><h1> {this.state.lesson_details.author.name}</h1>
 								</div>
 								<p class="intro-p pre-formated">{this.state.lesson_details.l_desc}</p>
 								
 							</div>
-							
-                            {(this.state.lesson_details.author !==localStorage.getItem('user') && this.state.lesson_details.type==='assingment')?
+                            {(this.state.lesson_details.author.id !==localStorage.getItem('user') && this.state.lesson_details.type==='assingment')?
                             (	
                                 <div class="col-lg-4 border-black submit-assingment">
 									<div class="container pt-2 text-center ">

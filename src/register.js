@@ -1,4 +1,5 @@
 import React , {Component} from 'react';
+import { Link } from 'react-router-dom';
 import {fire} from './firebase_config';
 
 
@@ -12,24 +13,36 @@ class Register extends Component {
             email:'',
             password:'',
             name:'',
+            registrationError:'',
+            loading:false
         }
       }
       register(e){
         e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
-            var user = fire.auth().currentUser;
-            user.updateProfile({
-                displayName: this.state.name
-            }).then(function() {
-               window.location.href="./dashboard"
-            }, function(error) {
-                console.log(error)
-            });     
-            
-        }).catch((error)=>
+        this.setState({registrationError:""});
+        this.setState({loading:true}); 
+        if(this.state.password.length<6)
         {
-             alert(error.message);
-        });
+            this.setState({registrationError:"Password must be greater than 6 characters",loading:false});
+        }else
+        {
+            fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
+                var user = fire.auth().currentUser;
+                user.updateProfile({
+                    displayName: this.state.name
+                }).then(function() {
+                   window.location.href="./dashboard"
+                }, function(error) {
+                    console.log(error)
+                });     
+                this.setState({loading:false});
+                
+            }).catch((error)=>
+            {
+                 this.setState({registrationError:error.message});
+                 this.setState({loading:false});
+            });
+        } 
     }
       handleChange(e){
           this.setState({[e.target.name]: e.target.value});
@@ -38,43 +51,43 @@ class Register extends Component {
 
     render(){
         return(
-                            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6 theme-bg h-100 text-center text-light">
+                            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-lg-6 theme-bg h-100 text-center text-light">
 
-                        <div class="website_desc div-middle">
-                            <div class="img-holder w-25 m-auto">
-                            <img src="logo.png" class="img-fluid" alt="logo"/>
+                        <div className="website_desc div-middle">
+                            <div className="img-holder w-25 m-auto">
+                            <img src="logo.png" className="img-fluid" alt="logo"/>
                             </div>
-                            <h1> Shorten </h1>
-                            <h3 class="text-white">  Your custom url shortner </h3>
+                            <h1> Schoolie </h1>
+                            <h3 className="text-white">  Your virtual School </h3>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="div-middle">
-                        <h1 class="website_head"> Register </h1>
-                            <form class="login-form text-left mx-auto my-4">
-                            <div class="form-group">
+                    <div className="col-lg-6">
+                        <div className="div-middle">
+                        <h1 className="website_head"> Register </h1>
+                            <form className="login-form text-left mx-auto my-4" onSubmit={this.register}>
+                            <div className="form-group">
                                 <label for="exampleInputEmail1">Full Name</label>
-                                    <input type="text" name="name" class="form-control" id="fullname" aria-describedby="name" placeholder="Enter your full name" value={this.state.name} onChange={this.handleChange} ></input>
+                                    <input type="text" name="name" className="form-control" id="fullname" aria-describedby="name" placeholder="Enter your full name" value={this.state.name} onChange={this.handleChange} ></input>
                                     
                                 </div>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} onChange={this.handleChange} ></input>
+                                    <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} onChange={this.handleChange} ></input>
                                     
                                 </div>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                    <input onChange={this.handleChange} value={this.state.password} type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                                    <input onChange={this.handleChange} value={this.state.password} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
                                     ></input>
                 </div>                  
-                                <div class="form-group text-center">
-                                    <button type="submit" onClick={this.register} class="btn theme-bg text-light w-25 p-2 mx-2" id="loginbtn">Register</button>
+                                <div className="form-group text-center">
+                                    <button disabled={this.state.loading} type="submit" className="btn theme-bg text-light w-25 p-2 mx-2" id="loginbtn">Register</button>
                                 </div>
-                                <p>Have an account <a href="/login">Login Now </a></p>
+                                <p>Have an account <Link to="/login" className="text-primary">Login Now </Link></p>
                             </form>
-
+                            {this.state.registrationError && (<div className="alert alert-danger">{this.state.registrationError}</div>)}
                             
                         </div>
                     </div>

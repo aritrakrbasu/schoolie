@@ -114,7 +114,7 @@ class ClassPage extends Component {
 						<div className="container-fluid class-intro bg-white box-shadow p-4 ">
 							<a href="/dashboard"><span><FontAwesomeIcon icon={faAngleLeft} className="fa-2x back-arrow text-dark"/></span></a>
 							<div className="row py-4">
-							<div className="col-lg-8">
+							<div className="col-lg-9">
 								<h1 className="big-header">{this.state.class_details.c_name}</h1>
 								<div className="container-teacher-large theme-text">
 											<span>By</span><h1>{this.state.class_details.author.name} </h1>
@@ -148,7 +148,7 @@ class ClassPage extends Component {
 								<a className="theme-btn theme-bg text-white btn" href="#lessons">Continue Lesson</a>
 								{/* <a className="theme-btn border-black text-dark btn" href="#">Github </a> */}
 							</div>
-								<div className="col-lg-4">
+								<div className="col-lg-3">
 								<img src={"/img/" +this.state.class_details.image}  alt="class decoration"className="img-fluid" />
 								</div>
 							</div>

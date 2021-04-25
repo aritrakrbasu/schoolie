@@ -3,7 +3,7 @@ import {db} from './firebase_config';
 import './App.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrashAlt, faAngleLeft, faPlus, faPen, faShareAlt} from '@fortawesome/free-solid-svg-icons';
-import AddLesson from './addlesson';
+import AddLesson from './addlesson'; 
 import Alert from './component/custom_alert';
 import Popup from './modal';
 import SideAlert from './component/small_alert';
@@ -14,21 +14,27 @@ class LessonSection extends Component {
     {
 		super(props)
 		this.deleteLesson=this.deleteLesson.bind(this);
+		this.closeModal=this.closeModal.bind(this);
         this.state={
 			class_details:null,
 			lessontype:true,
 			assingment:false,
 			study_material:false,
 			copied:false,
+			showModal:false,
+			class_id:''
         }
 	}
 	deleteLesson(id)
 	{
-		console.log(id)
 		if(this.state.class_id)
 		{
 		db.collection('classes').doc(this.state.class_id).collection('lessons').doc(id).delete();
 		}
+	}
+	closeModal()
+	{
+		this.setState({showModal:false});
 	}
     componentDidMount()
     {
@@ -42,17 +48,27 @@ class LessonSection extends Component {
     	.onSnapshot((doc)=> {
 			if(doc.exists)
 			{
-			const data =doc.data();
-			const docid =doc.id;
-			this.setState({class_details:data,docid:docid})
+				const data =doc.data();
+				const docid =doc.id;
+				const users =data.users;
+				Object.keys(users).forEach(key => {
+					
+					if(users[key].id===localStorage.getItem('user'))
+					{
+						this.setState({class_details:data,docid:docid})
+						return false;
+					}
+				});
+				
 			}
 			else{
-				this.props.history.push("/dashboard");
-
+				window.location.replace="/dashboard";
+			}
+			if(this.state.class_details===null)
+			{
+				window.location="/dashboard";
 			}
     	});
-		console.log(class_id)
-
 		//var classStudentRef = db.collection('classes').where("students", "array-contains", localStorage.getItem("user"));
         
 		var LessonRef=db.collection("classes").doc(class_id).collection('lessons');
@@ -75,6 +91,7 @@ class LessonSection extends Component {
 	}
   render(){
     return(
+		<>
         <div className="container-fluid py-4" id="lessons">
 								<h1 className="big-header d-block">Lessons</h1>
 								<div className="container-fluid lesson-conatiner">
@@ -133,7 +150,8 @@ class LessonSection extends Component {
 									</div>
 								</div>
 						</div>
-
+	<AddLesson show={this.state.showModal} onHide={this.closeModal} assingment={this.state.assingment} docid={this.state.class_id} />
+	</>
     )
 }
 }

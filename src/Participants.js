@@ -4,9 +4,6 @@ export default class Participants extends Component {
     constructor(props) {
         super(props);
     }
-    componentDidMount() {
-        console.log(this.props.data);
-    }
     render() {
         return (
                 <div className="container-fluid py-4" id="lessons">
